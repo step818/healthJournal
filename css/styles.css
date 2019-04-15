@@ -1,11 +1,7 @@
+h1{
+  text-align: center;
+}
 
-li {
-  color: blue;
-}
-li:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-ul {
-  list-style: none;
+#sleep {
+  width: 100px;
 }
