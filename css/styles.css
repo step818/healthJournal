@@ -5,3 +5,14 @@ h1{
 #sleep {
   width: 100px;
 }
+
+
+#sleep-table{
+  display: none;
+}
+
+
+#back-button {
+  width: 200px;
+  height: 80px;
+}
