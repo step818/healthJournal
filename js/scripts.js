@@ -66,6 +66,7 @@ $(document).ready(function(){
     $("#form").slideUp();
     $ ("#check-buttons").slideUp();
     $("#sleep-table").slideDown();
+    $("#dates").slideUp();
   });
 
   $("#back-button").click(function(){
@@ -73,5 +74,6 @@ $(document).ready(function(){
     $ ("#check-buttons").slideDown();
     $("#sleep-table").slideDown();
     $("#sleep-table").slideUp();
+    $("#dates").slideDown();
   });
 });
