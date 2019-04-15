@@ -72,6 +72,9 @@ journal.addJournalEntry(monday2);
 var timeDates = journal.getSleep();
 console.log(timeDates);
 
+
+
+
 $(document).ready(function(){
   $("form#formOne").submit(function(event){
     event.preventDefault();
