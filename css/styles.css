@@ -1,0 +1,11 @@
+
+li {
+  color: blue;
+}
+li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+ul {
+  list-style: none;
+}
