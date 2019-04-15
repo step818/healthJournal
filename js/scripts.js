@@ -79,6 +79,23 @@ $(document).ready(function(){
   $("form#formOne").submit(function(event){
     event.preventDefault();
 
+    var sleep = $("input#sleep").val();
+    var medications = $("textarea#medications").val();
+    var exercise = $("textarea#exercise").val();
+    var food = $("input#food").val();
+    var drink = $("input#drink").val();
+    var notes = $("textarea#notes").val();
+    var date = new Date();
+
+var n = date.toDateString();
+console.log('date:', n);
+
+    var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
+    journal.addJournalEntry(newEntry);
+    console.log(date, sleep, medications,exercise, food,drink,notes);
+
+    $("#filteredDates").append("<li>" + date + "</li> <br>");
+
   });
 
   $("#sleep-button").click(function(){
