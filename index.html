@@ -10,7 +10,73 @@
   </head>
   <body>
     <div class="container">
+      <div class="jumbotron">
+          <h1>Health Journal</h1>
+      </div>
 
+      <div class="row">
+        <div class="col-md-9">
+          <div class="card card-info">
+            <div class="card-header bg-secondary text-white">
+              Fill the form
+            </div>
+            <div class="card-body">
+              <form id="formOne">
+                <div class="form-group">
+                <label for="sleep">Sleep</label>
+                <input class = "form-control" type="number" id="sleep">
+                </div>
+
+                <div class="form-group">
+                <label for="medications">Medications</label>
+                <input class = "form-control" type="text" id="medications">
+                </div>
+
+                <div class="form-group">
+                <label for="exercise">Exercise</label>
+                <input class = "form-control" type="text" id="exercise">
+                </div>
+
+                <div class="form-group">
+                <label for="food">Food</label>
+                <input class = "form-control" type="text" id="food">
+                </div>
+                <div class="form-group">
+                <label for="drink">Drink</label>
+                <input class = "form-control" type="text" id="drink">
+                </div>
+
+                <div class="form-group">
+                <label for="notes">Notes</label>
+                <input class = "form-control" type="text" id="notes">
+                </div>
+                <button class= "btn-danger" type="button" name="button">Submit</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="col-md-3">
+          <div class="card card-info">
+            <div class="card-header bg-secondary text-white" >
+              Dates
+            </div>
+            <div class="card-body">
+              <button type="button" class="btn btn-primary btn-lg btn-block">Sleep Table</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block">Medication Table</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block">Exercise Table</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block">Food Table</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block">Drink Table</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block">Notes Table</button>
+            </div>
+            <ul id="dates">
+            </ul>
+          </div>
+        </div>
+
+      </div>
 
     </div>
   </body>
