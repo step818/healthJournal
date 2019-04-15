@@ -62,6 +62,21 @@ function JournalEntry(timeDate, sleep, medications, exercises, food, drink, gene
 }
 
 
+function attachJournalListeners() {
+  $("ul#all-dates").on("click", "li", function(){
+    var date = new Date();
+
+var n = date.toDateString();
+
+    $("#show-template").slideDown();
+    $("#check-buttons").slideUp();
+    $("#form").slideUp()
+    $("#display-date").text(n);
+        $("#display-date").show();
+        $("#dates").slideUp();
+  });
+};
+
 
 // User Interface
 
@@ -73,9 +88,17 @@ var timeDates = journal.getSleep();
 console.log(timeDates);
 
 
+// function showEntry(entryId) {
+//   var contact = journal.findJournalEntry(entryId);
+//   $("#show-template").show();
+//   $()
+// }
+
+
 
 
 $(document).ready(function(){
+  attachJournalListeners()
   $("form#formOne").submit(function(event){
     event.preventDefault();
 
@@ -88,13 +111,13 @@ $(document).ready(function(){
     var date = new Date();
 
 var n = date.toDateString();
-console.log('date:', n);
+console.log(n);
 
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
     journal.addJournalEntry(newEntry);
     console.log(date, sleep, medications,exercise, food,drink,notes);
 
-    $("#filteredDates").append("<li>" + date + "</li> <br>");
+    $("#all-dates").append("<li>" + date + "</li> <br>");
 
   });
 
