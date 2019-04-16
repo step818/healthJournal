@@ -248,6 +248,9 @@ $(document).ready(function() {
     journal.addJournalEntry(newEntry);
     $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
 
+
+    
+
   });
 
   $("#sleep-button").click(function() {
