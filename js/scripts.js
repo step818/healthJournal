@@ -55,12 +55,20 @@ function JournalEntry(timeDate, sleep, medications, exercises, food, drink, gene
 // User Interface
 function listfilteredEntries(journal, property) {
   var htmlForfilteredEntries = "";
+  var line=1;
+  var appliedClass = "";
 
   if (property === "sleep"){
     var filteredEntries = $("#filteredSleepDates");
     journal.journalEntries.forEach(function(journalEntry) {
       if (journalEntry.sleep) {
-        htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.sleep}<p></div>`;
+        if (line%2 === 1) {
+          appliedClass = 'oddRow';
+        } else {
+          appliedClass = "";
+        }
+        htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.sleep}<p></div>`;
+        line+=1;
       }
     });
   } else if (property === "medications") {
