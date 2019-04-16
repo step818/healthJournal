@@ -75,36 +75,61 @@ function listfilteredEntries(journal, property) {
       var filteredEntries = $("#filteredMedicationsDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.medications) {
-          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.medications}<p></div>`;
-        }
+          if (line%2 === 1) {
+            appliedClass = 'oddRow';
+          } else {
+            appliedClass = "";
+          }
+          htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.medications}<p></div>`;
+          line+=1;        }
       });
   } else if (property === "exercises") {
       var filteredEntries = $("#filteredExercisesDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.exercises) {
-          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.exercises}<p></div>`;
-        }
+          if (line%2 === 1) {
+            appliedClass = 'oddRow';
+          } else {
+            appliedClass = "";
+          }
+          htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.exercises}<p></div>`;
+          line+=1;        }
       });
   } else if (property === "food") {
       var filteredEntries = $("#filteredFoodDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.food) {
-          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.food}<p></div>`;
-        }
+          if (line%2 === 1) {
+            appliedClass = 'oddRow';
+          } else {
+            appliedClass = "";
+          }
+          htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.food}<p></div>`;
+          line+=1;        }
     });
   } else if (property === "drink") {
       var filteredEntries = $("#filteredDrinkDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.drink) {
-          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.drink}<p></div>`;
-        }
+          if (line%2 === 1) {
+            appliedClass = 'oddRow';
+          } else {
+            appliedClass = "";
+          }
+          htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.drink}<p></div>`;
+          line+=1;        }
     });
   } else if (property === "general") {
       var filteredEntries = $("#filteredGeneralDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.general) {
-          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.general}<p></div>`;
-        }
+          if (line%2 === 1) {
+            appliedClass = 'oddRow';
+          } else {
+            appliedClass = "";
+          }
+          htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.general}<p></div>`;
+          line+=1;        }
       });
   }
   filteredEntries.html(htmlForfilteredEntries);

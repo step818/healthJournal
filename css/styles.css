@@ -207,8 +207,8 @@ bcontainer{max-width:1170px; margin:auto;}
 
 
 
-#filteredSleepDates {
+#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates {
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 3fr 6fr;
+  grid-template-columns: 4fr 6fr;
 }
