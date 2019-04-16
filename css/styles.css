@@ -21,3 +21,13 @@ h1{
 #show-template{
   display: none;
 }
+ul {
+	list-style-type: none;
+}
+#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates li {
+  color: blue;
+}
+#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -114,8 +114,36 @@ function listfilteredEntries(journal, property) {
   console.log(filteredEntries);
 }
 
-
-
+function attachSleepListeners() {
+  $("ul#filteredSleepDates").on("click", "li", function() {
+    showEntry(this.id);
+  });
+}
+function attachMedicationsListeners() {
+  $("ul#filteredMedicationsDates").on("click", "li", function() {
+    showEntry(this.id);
+  });
+}
+function attachExerciseListeners() {
+  $("ul#filteredExercisesDates").on("click", "li", function() {
+    showEntry(this.id);
+  });
+}
+function attachFoodListeners() {
+  $("ul#filteredFoodDates").on("click", "li", function() {
+    showEntry(this.id);
+  });
+}
+function attachDrinkListeners() {
+  $("ul#filteredDrinkDates").on("click", "li", function() {
+    showEntry(this.id);
+  });
+}
+function attachGeneralListeners() {
+  $("ul#filteredGeneralDates").on("click", "li", function() {
+    showEntry(this.id);
+  });
+}
 
 
 function attachJournalListeners() {
@@ -157,7 +185,15 @@ function showEntry(entryId) {
 
 
 $(document).ready(function() {
-  attachJournalListeners()
+  attachJournalListeners();
+  attachSleepListeners();
+  attachMedicationsListeners();
+  attachExerciseListeners();
+  attachFoodListeners();
+  attachDrinkListeners();
+  attachGeneralListeners();
+ß
+
   journal.addJournalEntry(monday1);
   // $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li> <br>");
 
