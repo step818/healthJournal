@@ -37,6 +37,12 @@ ul {
 .oddRow {
   background-color: #dddddd;
 }
+.evenRow {}
+#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 4fr 6fr;
+}
 
 #medication-table, #sleep-table, #exercise-table, #food-table, #drink-table, #notes-table{
   display: none;
@@ -201,14 +207,31 @@ bcontainer{max-width:1170px; margin:auto;}
 100% {
     transform: scale(1);
 }
->>>>>>> master
 }
 
 
 
 
-#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates {
+/* <div class="grid grid-justify grid-1-3-1">
+  <div>
+  <p>
+  <img>
+</div>
+
+.grid {
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 4fr 6fr;
 }
+
+.grid-justify {
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-1-1 {
+  grid-template-columns: 1fr 1fr;
+  altnerative: grid-template-columns: repeat(2, 1fr)
+}
+
+.grid-1-3-1 {
+  grid-template-columns: 1fr 3fr 1fr;
+} */

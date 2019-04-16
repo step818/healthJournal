@@ -65,7 +65,7 @@ function listfilteredEntries(journal, property) {
         if (line%2 === 1) {
           appliedClass = 'oddRow';
         } else {
-          appliedClass = "";
+          appliedClass = "evenRow";
         }
         htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.sleep}<p></div>`;
         line+=1;
@@ -78,7 +78,7 @@ function listfilteredEntries(journal, property) {
           if (line%2 === 1) {
             appliedClass = 'oddRow';
           } else {
-            appliedClass = "";
+            appliedClass = "evenRow";
           }
           htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.medications}<p></div>`;
           line+=1;        }
@@ -90,7 +90,7 @@ function listfilteredEntries(journal, property) {
           if (line%2 === 1) {
             appliedClass = 'oddRow';
           } else {
-            appliedClass = "";
+            appliedClass = "evenRow";
           }
           htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.exercises}<p></div>`;
           line+=1;        }
@@ -102,7 +102,7 @@ function listfilteredEntries(journal, property) {
           if (line%2 === 1) {
             appliedClass = 'oddRow';
           } else {
-            appliedClass = "";
+            appliedClass = "evenRow";
           }
           htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.food}<p></div>`;
           line+=1;        }
@@ -114,7 +114,7 @@ function listfilteredEntries(journal, property) {
           if (line%2 === 1) {
             appliedClass = 'oddRow';
           } else {
-            appliedClass = "";
+            appliedClass = "evenRow";
           }
           htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.drink}<p></div>`;
           line+=1;        }
@@ -126,7 +126,7 @@ function listfilteredEntries(journal, property) {
           if (line%2 === 1) {
             appliedClass = 'oddRow';
           } else {
-            appliedClass = "";
+            appliedClass = "evenRow";
           }
           htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.general}<p></div>`;
           line+=1;        }
