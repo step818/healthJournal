@@ -1,148 +1,162 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/bootstrap.css">
+
+<head>
+  <meta charset="utf-8">
+  <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+  <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/jquery-3.4.0.js"></script>
   <script src="js/scripts.js"></script>
-    <title>Health Journal</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="jumbotron">
-          <h1>Health Journal</h1>
-      </div>
 
-      <div class="row">
-        <div id="form" class="col-md-8">
-          <div class="card card-info">
-            <div class="card-header bg-secondary text-white">
-              Fill the form
-            </div>
-            <div class="card-body">
-              <form id="formOne">
-                <div class="form-group">
+  <title>Health Journal</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Health Journal</h1>
+      <div class="center">
+        <div class="heart"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="form" class="col-md-7">
+        <div class="card card-info">
+          <div class="card-header bg-secondary text-white">
+            Fill the form
+          </div>
+          <div class="card-body">
+            <form id="formOne">
+              <div class="form-group">
                 <label for="sleep">Sleep</label>
-                <input class = "form-control" type="number" id="sleep">
-                </div>
-
-                <div class="form-group">
-                  <label for="medications">Medications</label>
-                  <textarea class="form-control" id="medications" rows="3"></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="exercise">Exercise</label>
-                  <textarea class="form-control" type="text" id="exercise" rows="3"></textarea>
-                </div>
-
-                <div class="form-group">
-                <label for="food">Food</label>
-                <input class = "form-control" type="text" id="food">
-                </div>
-                <div class="form-group">
-                <label for="drink">Drink</label>
-                <input class = "form-control" type="text" id="drink">
-                </div>
-
-                <div class="form-group">
-                  <label for="notes">Notes</label>
-                  <textarea class="form-control" id="notes" rows="3"></textarea>
-                </div>
-                <button class= "btn-danger" type="submit" name="button">Submit</button>
-              </form>
-            </div>
-
-          </div>
-        </div>
-
-
-
-
-
-        <div id ="check-buttons"class="col-md-2">
-          <div class="card card-info">
-            <div class="card-header bg-secondary text-white" >
-              Buttons
-            </div>
-            <div class="card-body">
-              <button id="sleep-button" type="button" class="btn btn-primary btn-sm btn-block">Sleep Table</button>
-              <button id="medication-button" type="button" class="btn btn-primary btn-sm btn-block">Medication Table</button>
-              <button id="exercise-button" type="button" class="btn btn-primary btn-sm btn-block">Exercise Table</button>
-              <button  id="food-button" type="button" class="btn btn-primary btn-sm btn-block">Food Table</button>
-              <button  id="drink-button" type="button" class="btn btn-primary btn-sm btn-block">Drink Table</button>
-              <button  id="notes-button" type="button" class="btn btn-primary btn-sm btn-block">Notes Table</button>
-            </div>
-            <!-- <ul id="dates">
-            </ul> -->
-          </div>
-        </div>
-
-
-        <div id ="dates" class="col-md-2">
-          <div class="card card-info">
-            <div class="card-header bg-secondary text-white">
-             Dates
-            </div>
-            <div class="card-body">
-              <ul id="all-dates">
-
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-  </div>
-
-        <div id="sleep-table">
-
-
-        <div class="row">
-          <div class="col-md-9">
-              <div class="card card-info">
-                <div class="card-header bg-secondary">
-                  Sleep table
-                </div>
-                <div class="card-body">
-          </div>
-          </div>
-          </div>
-
-
-          <div class="col-md-3">
-            <button id="back-button" class="btn-lg btn-danger" type="button" name="button">Back</button>
-
-          </div>
-
-        </div>
-        </div>
-        <div id="show-template">
-          <div class="row">
-            <div class="col-md-9">
-              <div class="card card-info">
-                <div class="card-header bg-primary">
-                  Your template  for <p><span id="display-date"></span></p>:
-
-                </div>
-                <div class="card-header">
-
-                </div>
+                <input class="form-control" type="number" id="sleep">
               </div>
 
-            </div>
+              <div class="form-group">
+                <label for="medications">Medications</label>
+                <textarea class="form-control" id="medications" rows="3"></textarea>
+              </div>
 
+              <div class="form-group">
+                <label for="exercise">Exercise</label>
+                <textarea class="form-control" type="text" id="exercise" rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="food">Food</label>
+                <input class="form-control" type="text" id="food">
+              </div>
+              <div class="form-group">
+                <label for="drink">Drink</label>
+                <input class="form-control" type="text" id="drink">
+              </div>
+              <div class="form-group">
+                <label for="notes">Notes</label>
+                <textarea class="form-control" id="notes" rows="3"></textarea>
+              </div>
+              <button class="btn-danger" type="submit" name="button">Submit</button>
+            </form>
           </div>
         </div>
+      </div>
+      <div id="check-buttons" class="col-md-2">
+        <div class="card card-info">
+          <div class="card-header bg-secondary text-white">
+            Buttons
+          </div>
+          <div class="card-body">
+            <button id="sleep-button" type="button" class="btn btn-primary btn-sm btn-block">Sleep Table</button>
+            <button id="medication-button" type="button" class="btn btn-primary btn-sm btn-block">Medication Table</button>
+            <button id="exercise-button" type="button" class="btn btn-primary btn-sm btn-block">Exercise Table</button>
+            <button id="food-button" type="button" class="btn btn-primary btn-sm btn-block">Food Table</button>
+            <button id="drink-button" type="button" class="btn btn-primary btn-sm btn-block">Drink Table</button>
+            <button id="notes-button" type="button" class="btn btn-primary btn-sm btn-block">Notes Table</button>
+          </div>
+
+        </div>
+      </div>
 
 
-
-
-
-
-
+      <div id="dates" class="col-md-3">
+        <div class="card card-info">
+          <div class="card-header bg-secondary text-white">
+            Dates
+          </div>
+          <div class="card-body">
+            <ul id="all-dates">
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </body>
+  </div>
+  <div id="sleep-table">
+    <div class="row" id="sleep-table-row">
+      <div class="col-md-9">
+        <div class="card card-info">
+          <div class="card-header bg-secondary">
+            Sleep table
+          </div>
+          <div class="card-body">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button id="sleep-back-button" class="btn-lg btn-danger back-button-class" type="button" name="button">Back</button>
+      </div>
+    </div>
+  </div>
+  <div id="medication-table">
+    <div class="row" id="medication-table-row">
+      <div class="col-md-9">
+        <div class="card card-info">
+          <div class="card-header bg-secondary">
+            Medication table
+          </div>
+          <div class="card-body">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button id="medication-back-button" class="btn-lg btn-danger back-button-class" type="button" name="button">Back</button>
+      </div>
+    </div>
+  </div>
+  <div id="show-template">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="card card-info">
+          <div class="card-header bg-primary">
+            Your template for <p><span id="display-date"></span></p>:
+            <p><span class="sleep"></span></p>
+            <p><span class="medications"></span></p>
+            <p><span class="exercises"></span></p>
+            <p><span class="food"></span></p>
+            <p><span class="drink"></span></p>
+            <p><span class="general"></span></p>
+          </div>
+          <div class="card-header">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <button id="go-back-button" class="btn-lg btn-danger" type="button" name="button">Go Back</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  </div>
+</body>
+
 </html>

@@ -1,4 +1,4 @@
-var monday1 = new JournalEntry (
+var monday1 = new JournalEntry(
   timeDate = '04/15/2000 13:00',
   sleep = 8,
   medications = "100mg caffiene, 800mg ibuprofen",
@@ -7,7 +7,7 @@ var monday1 = new JournalEntry (
   drink = "12oz orange san pelligrino",
   general = "woke up earlier than I wanted to but I feel decently rested"
 )
-var monday2 = new JournalEntry (
+var monday2 = new JournalEntry(
   timeDate = '04/15/2000 13:30',
   sleep = '',
   medications = '',
@@ -19,29 +19,30 @@ var monday2 = new JournalEntry (
 // Business logic
 function Journal() {
   this.journalEntries = [],
-  this.currentId = 0
+    this.currentId = 0
 }
 Journal.prototype.addJournalEntry = function(journalEntry) {
   journalEntry.id = this.assignId();
   this.journalEntries.push(journalEntry);
 }
-Journal.prototype.assignId = function () {
+Journal.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
 }
-Journal.prototype.findJournalEntry = function(id){
-  for (var i=0; i < this.journalEntries.length; i++){
+Journal.prototype.findJournalEntry = function(id) {
+  console.log(this.journalEntries.length);
+  for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
-      if (this.journalEntries[i].id == id) {
+      if (this.journalEntries[i].id == parseInt(id)) {
         return this.journalEntries[i];
       }
     }
   }
   return false;
 }
-Journal.prototype.getSleep = function(){
+Journal.prototype.getSleep = function() {
   var timeDates = [];
-  for (var i=0; i < this.journalEntries.length; i++){
+  for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
       if (this.journalEntries[i].sleep) {
         timeDates.push(this.journalEntries[i].timeDate);
@@ -53,27 +54,29 @@ Journal.prototype.getSleep = function(){
 
 function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
   this.timeDate = timeDate,
-  this.sleep = sleep,
-  this.medications = medications,
-  this.exercises = exercises,
-  this.food = food,
-  this.drink = drink,
-  this.general = general
+    this.sleep = sleep,
+    this.medications = medications,
+    this.exercises = exercises,
+    this.food = food,
+    this.drink = drink,
+    this.general = general
 }
 
 
 function attachJournalListeners() {
-  $("ul#all-dates").on("click", "li", function(){
+  $("ul#all-dates").on("click", "li", function() {
     var date = new Date();
 
-var n = date.toDateString();
+    var n = date.toDateString();
+    showEntry(this.id);
+
 
     $("#show-template").slideDown();
     $("#check-buttons").slideUp();
     $("#form").slideUp()
     $("#display-date").text(n);
-        $("#display-date").show();
-        $("#dates").slideUp();
+    $("#display-date").show();
+    $("#dates").slideUp();
   });
 };
 
@@ -81,25 +84,36 @@ var n = date.toDateString();
 // User Interface
 
 var journal = new Journal();
-journal.addJournalEntry(monday1);
-journal.addJournalEntry(monday2);
+
 
 var timeDates = journal.getSleep();
 console.log(timeDates);
 
 
-// function showEntry(entryId) {
-//   var contact = journal.findJournalEntry(entryId);
-//   $("#show-template").show();
-//   $()
-// }
+function showEntry(entryId) {
+  var entry = journal.findJournalEntry(entryId);
+  $("#show-template").show();
+  $(".sleep").html(entry.sleep);
+  $(".medications").html(entry.medications);
+  $(".exercises").html(entry.exercises);
+  $(".food").html(entry.food);
+  $(".drink").html(entry.drink);
+  $(".general").html(entry.general);
+
+}
 
 
 
 
-$(document).ready(function(){
+$(document).ready(function() {
   attachJournalListeners()
-  $("form#formOne").submit(function(event){
+  journal.addJournalEntry(monday1);
+  $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li> <br>");
+
+  journal.addJournalEntry(monday2);
+  $("#all-dates").append("<li id=" + monday2.id + ">" + monday2.timeDate + "</li> <br>");
+
+  $("form#formOne").submit(function(event) {
     event.preventDefault();
 
     var sleep = $("input#sleep").val();
@@ -109,30 +123,54 @@ $(document).ready(function(){
     var drink = $("input#drink").val();
     var notes = $("textarea#notes").val();
     var date = new Date();
-
-var n = date.toDateString();
-console.log(n);
-
+    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ":" + date.getMinutes();
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
-    journal.addJournalEntry(newEntry);
-    console.log(date, sleep, medications,exercise, food,drink,notes);
 
-    $("#all-dates").append("<li>" + date + "</li> <br>");
+    journal.addJournalEntry(newEntry);
+    $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
 
   });
 
-  $("#sleep-button").click(function(){
+  $("#sleep-button").click(function() {
     $("#form").slideUp();
-    $ ("#check-buttons").slideUp();
+    $("#check-buttons").slideUp();
     $("#sleep-table").slideDown();
     $("#dates").slideUp();
+
+    $("#sleep-table-row").show();
   });
 
-  $("#back-button").click(function(){
+  $("#medication-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#medication-table").slideDown();
+    $("#dates").slideUp();
+
+    $("#medication-table-row").show();
+  });
+
+  $("#sleep-back-button").click(function() {
     $("#form").slideDown();
-    $ ("#check-buttons").slideDown();
+    $("#check-buttons").slideDown();
     $("#sleep-table").slideDown();
-    $("#sleep-table").slideUp();
+    $("#sleep-table-row").hide();
+    $("#medication-table-row").hide();
     $("#dates").slideDown();
+  });
+
+  $("#medication-back-button").click(function() {
+    $("#form").slideDown();
+    $("#check-buttons").slideDown();
+    $("#medication-table").slideDown();
+    $("#sleep-table-row").hide();
+    $("#medication-table-row").hide();
+    $("#dates").slideDown();
+  });
+
+  $("#go-back-button").click(function() {
+    $("#show-template").hide();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+    $("#form").slideDown();
   });
 });
