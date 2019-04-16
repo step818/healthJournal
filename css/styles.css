@@ -62,10 +62,10 @@ ul {
   cursor: pointer;
 }
 
-.oddRow {
+.oddRow {}
+.evenRow {
   background-color: #dddddd;
 }
-.evenRow {}
 #filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates {
   display: grid;
   grid-template-rows: auto;
