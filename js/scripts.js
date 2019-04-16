@@ -1,3 +1,7 @@
+
+
+
+
 var monday1 = new JournalEntry(
   timeDate = '04/15/2000 13:00',
   sleep = 8,
@@ -40,6 +44,44 @@ Journal.prototype.findJournalEntry = function(id) {
   }
   return false;
 }
+// Journal.prototype.findJournalEntry = function(id) {
+//   var sleeps=[];
+//   for (var i = 0; i < this.journalEntries.length; i++) {
+//     if (this.journalEntries[i]) {
+//       if (this.journalEntries[i].sleep) {
+//         sleeps.push(this.journalEntries[i]);
+//       }
+//     }
+//   }
+//   return sleeps;
+// }
+//
+// function sleepChart(){
+//   var sleeps = journal.findJournalEntry();
+//   var slp =[];
+//   for(var i=0; i<sleeps.length; i++){
+//     slp.push({
+//       y: sleeps[i]
+//     });
+//   }
+//
+//
+// var chart = new CanvasJS.Chart("chartContainer", {
+// 	animationEnabled: true,
+// 	theme: "light2",
+// 	title:{
+// 		text: "Sleep Chart"
+// 	},
+// 	axisY:{
+// 		includeZero: false
+// 	},
+// 	data: [{
+// 		type: "line",
+// 		dataPoints:  slp
+// 	}]
+// });
+// chart.render();
+// };
 
 function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
   this.timeDate = timeDate,
@@ -105,31 +147,37 @@ function listfilteredEntries(journal, property) {
 function attachSleepListeners() {
   $("ul#filteredSleepDates").on("click", "li", function() {
     showEntry(this.id);
+    $("#sleep-back-button").hide();
   });
 }
 function attachMedicationsListeners() {
   $("ul#filteredMedicationsDates").on("click", "li", function() {
     showEntry(this.id);
+    $("#medication-back-button").hide();
   });
 }
 function attachExercisesListeners() {
   $("ul#filteredExercisesDates").on("click", "li", function() {
     showEntry(this.id);
+    $("#exercise-back-button").hide();
   });
 }
 function attachFoodListeners() {
   $("ul#filteredFoodDates").on("click", "li", function() {
     showEntry(this.id);
+    $("#food-back-button").hide();
   });
 }
 function attachDrinkListeners() {
   $("ul#filteredDrinkDates").on("click", "li", function() {
     showEntry(this.id);
+    $("#drink-back-button").hide();
   });
 }
 function attachGeneralListeners() {
   $("ul#filteredGeneralDates").on("click", "li", function() {
     showEntry(this.id);
+    $("#notes-back-button").hide();
   });
 }
 
@@ -168,26 +216,7 @@ function showEntry(entryId) {
   $(".general").html(entry.general);
 }
 
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer", {
-  	animationEnabled: true,
-  	theme: "light2",
-  	title:{
-  		text: "Sleep Chart"
-  	},
-  	axisY:{
-  		includeZero: false
-  	},
-  	data: [{
-  		type: "line",
-  		dataPoints: [
-  			{y: 10},
 
-  		]
-  	}]
-  });
-  chart.render();
-  }
 
 
 $(document).ready(function() {
@@ -226,9 +255,12 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#sleep-table").slideDown();
     $("#dates").slideUp();
+
     var property = "sleep";
     listfilteredEntries(journal, property);
     $("#sleep-table-row").show();
+    // sleepChart();
+
   });
   $("#sleep-back-button").click(function(){
     $("#sleep-table").slideUp();
@@ -319,6 +351,12 @@ $(document).ready(function() {
 
   $("#go-back-button").click(function() {
     $("#show-template").hide();
+    $("#sleep-table").hide();
+    $("#exercise-table").hide();
+    $("#medication-table").hide();
+    $("#food-table").hide();
+    $("#drink-table").hide();
+    $("#notes-table").hide();
     $("#dates").slideDown();
     $("#check-buttons").slideDown();
     $("#form").slideDown();
