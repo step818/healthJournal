@@ -123,7 +123,7 @@ $(document).ready(function() {
     var drink = $("input#drink").val();
     var notes = $("textarea#notes").val();
     var date = new Date();
-    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ":" + date.getMinutes();
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
 
     journal.addJournalEntry(newEntry);
@@ -136,13 +136,34 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#sleep-table").slideDown();
     $("#dates").slideUp();
+
+    $("#sleep-table-row").show();
   });
 
-  $("#back-button").click(function() {
+  $("#medication-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#medication-table").slideDown();
+    $("#dates").slideUp();
+
+    $("#medication-table-row").show();
+  });
+
+  $("#sleep-back-button").click(function() {
     $("#form").slideDown();
     $("#check-buttons").slideDown();
     $("#sleep-table").slideDown();
-    $("#sleep-table").slideUp();
+    $("#sleep-table-row").hide();
+    $("#medication-table-row").hide();
+    $("#dates").slideDown();
+  });
+
+  $("#medication-back-button").click(function() {
+    $("#form").slideDown();
+    $("#check-buttons").slideDown();
+    $("#medication-table").slideDown();
+    $("#sleep-table-row").hide();
+    $("#medication-table-row").hide();
     $("#dates").slideDown();
   });
 
