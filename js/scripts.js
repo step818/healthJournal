@@ -1,3 +1,7 @@
+
+
+
+
 var monday1 = new JournalEntry(
   timeDate = '04/15/2000 13:00',
   sleep = 8,
@@ -9,7 +13,7 @@ var monday1 = new JournalEntry(
 )
 var monday2 = new JournalEntry(
   timeDate = '04/15/2000 13:30',
-  sleep = '',
+  sleep = 4,
   medications = '',
   exercises = '',
   food = "oatmeal with cranberries and pecans",
@@ -40,17 +44,44 @@ Journal.prototype.findJournalEntry = function(id) {
   }
   return false;
 }
-Journal.prototype.getSleep = function() {
-  var timeDates = [];
-  for (var i = 0; i < this.journalEntries.length; i++) {
-    if (this.journalEntries[i]) {
-      if (this.journalEntries[i].sleep) {
-        timeDates.push(this.journalEntries[i].timeDate);
-      }
-    }
-  }
-  return timeDates;
-}
+// Journal.prototype.findJournalEntry = function(id) {
+//   var sleeps=[];
+//   for (var i = 0; i < this.journalEntries.length; i++) {
+//     if (this.journalEntries[i]) {
+//       if (this.journalEntries[i].sleep) {
+//         sleeps.push(this.journalEntries[i]);
+//       }
+//     }
+//   }
+//   return sleeps;
+// }
+//
+// function sleepChart(){
+//   var sleeps = journal.findJournalEntry();
+//   var slp =[];
+//   for(var i=0; i<sleeps.length; i++){
+//     slp.push({
+//       y: sleeps[i]
+//     });
+//   }
+//
+//
+// var chart = new CanvasJS.Chart("chartContainer", {
+// 	animationEnabled: true,
+// 	theme: "light2",
+// 	title:{
+// 		text: "Sleep Chart"
+// 	},
+// 	axisY:{
+// 		includeZero: false
+// 	},
+// 	data: [{
+// 		type: "line",
+// 		dataPoints:  slp
+// 	}]
+// });
+// chart.render();
+// };
 
 function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
   this.timeDate = timeDate,
@@ -60,6 +91,94 @@ function JournalEntry(timeDate, sleep, medications, exercises, food, drink, gene
     this.food = food,
     this.drink = drink,
     this.general = general
+}
+
+// User Interface
+function listfilteredEntries(journal, property) {
+  var htmlForfilteredEntries = "";
+
+  if (property === "sleep"){
+    var filteredEntries = $("ul#filteredSleepDates");
+    journal.journalEntries.forEach(function(journalEntry) {
+      if (journalEntry.sleep) {
+        htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.sleep + "</li>";
+      }
+    });
+  } else if (property === "medications") {
+      var filteredEntries = $("ul#filteredMedicationsDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.medications) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.medications + "</li>";
+        }
+      });
+  } else if (property === "exercises") {
+      var filteredEntries = $("ul#filteredExercisesDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.exercises) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.exercises + "</li>";
+        }
+      });
+  } else if (property === "food") {
+      var filteredEntries = $("ul#filteredFoodDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.food) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.food + "</li>";
+        }
+    });
+  } else if (property === "drink") {
+      var filteredEntries = $("ul#filteredDrinkDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.drink) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.drink + "</li>";
+        }
+    });
+  } else if (property === "general") {
+      var filteredEntries = $("ul#filteredGeneralDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.general) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.general + "</li>";
+        }
+      });
+  }
+  filteredEntries.html(htmlForfilteredEntries);
+  console.log(filteredEntries);
+}
+
+function attachSleepListeners() {
+  $("ul#filteredSleepDates").on("click", "li", function() {
+    showEntry(this.id);
+    $("#sleep-back-button").hide();
+  });
+}
+function attachMedicationsListeners() {
+  $("ul#filteredMedicationsDates").on("click", "li", function() {
+    showEntry(this.id);
+    $("#medication-back-button").hide();
+  });
+}
+function attachExercisesListeners() {
+  $("ul#filteredExercisesDates").on("click", "li", function() {
+    showEntry(this.id);
+    $("#exercise-back-button").hide();
+  });
+}
+function attachFoodListeners() {
+  $("ul#filteredFoodDates").on("click", "li", function() {
+    showEntry(this.id);
+    $("#food-back-button").hide();
+  });
+}
+function attachDrinkListeners() {
+  $("ul#filteredDrinkDates").on("click", "li", function() {
+    showEntry(this.id);
+    $("#drink-back-button").hide();
+  });
+}
+function attachGeneralListeners() {
+  $("ul#filteredGeneralDates").on("click", "li", function() {
+    showEntry(this.id);
+    $("#notes-back-button").hide();
+  });
 }
 
 
@@ -81,13 +200,9 @@ function attachJournalListeners() {
 };
 
 
-// User Interface
 
 var journal = new Journal();
 
-
-var timeDates = journal.getSleep();
-console.log(timeDates);
 
 
 function showEntry(entryId) {
@@ -101,35 +216,21 @@ function showEntry(entryId) {
   $(".general").html(entry.general);
 }
 
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer", {
-  	animationEnabled: true,
-  	theme: "light2",
-  	title:{
-  		text: "Sleep Chart"
-  	},
-  	axisY:{
-  		includeZero: false
-  	},
-  	data: [{
-  		type: "line",
-  		dataPoints: [
-  			{y: 10},
 
-  		]
-  	}]
-  });
-  chart.render();
-  }
 
 
 $(document).ready(function() {
-  attachJournalListeners()
-  journal.addJournalEntry(monday1);
-  $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li> <br>");
+  attachJournalListeners();
+  attachSleepListeners();
+  attachMedicationsListeners();
+  attachExercisesListeners();
+  attachFoodListeners();
+  attachDrinkListeners();
+  attachGeneralListeners();
 
+
+  journal.addJournalEntry(monday1);
   journal.addJournalEntry(monday2);
-  $("#all-dates").append("<li id=" + monday2.id + ">" + monday2.timeDate + "</li> <br>");
 
   $("form#formOne").submit(function(event) {
     event.preventDefault();
@@ -147,6 +248,9 @@ $(document).ready(function() {
     journal.addJournalEntry(newEntry);
     $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
 
+
+    
+
   });
 
   $("#sleep-button").click(function() {
@@ -155,7 +259,11 @@ $(document).ready(function() {
     $("#sleep-table").slideDown();
     $("#dates").slideUp();
 
+    var property = "sleep";
+    listfilteredEntries(journal, property);
     $("#sleep-table-row").show();
+    // sleepChart();
+
   });
   $("#sleep-back-button").click(function(){
     $("#sleep-table").slideUp();
@@ -169,7 +277,8 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#medication-table").slideDown();
     $("#dates").slideUp();
-
+    var property = "medications";
+    listfilteredEntries(journal, property);
     $("#medication-table-row").show();
   });
   $("#medication-back-button").click(function(){
@@ -184,7 +293,8 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#exercise-table").slideDown();
     $("#dates").slideUp();
-
+    var property = "exercises";
+    listfilteredEntries(journal, property);
     $("#exercise-table-row").show();
   });
   $("#exercise-back-button").click(function(){
@@ -199,7 +309,8 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#food-table").slideDown();
     $("#dates").slideUp();
-
+    var property = "food";
+    listfilteredEntries(journal, property);
     $("#food-table-row").show();
   });
   $("#food-back-button").click(function(){
@@ -214,7 +325,8 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#drink-table").slideDown();
     $("#dates").slideUp();
-
+    var property = "drink";
+    listfilteredEntries(journal, property);
     $("#drink-table-row").show();
   });
   $("#drink-back-button").click(function(){
@@ -229,7 +341,8 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#notes-table").slideDown();
     $("#dates").slideUp();
-
+    var property = "general";
+    listfilteredEntries(journal, property);
     $("#notes-table-row").show();
   });
   $("#notes-back-button").click(function(){
@@ -241,6 +354,12 @@ $(document).ready(function() {
 
   $("#go-back-button").click(function() {
     $("#show-template").hide();
+    $("#sleep-table").hide();
+    $("#exercise-table").hide();
+    $("#medication-table").hide();
+    $("#food-table").hide();
+    $("#drink-table").hide();
+    $("#notes-table").hide();
     $("#dates").slideDown();
     $("#check-buttons").slideDown();
     $("#form").slideDown();
