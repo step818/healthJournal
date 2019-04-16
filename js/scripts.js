@@ -64,7 +64,6 @@ function JournalEntry(timeDate, sleep, medications, exercises, food, drink, gene
 
 // User Interface
 function listfilteredEntries(journal, property) {
-  var filteredEntries = $("ul#filteredDates");
   var htmlForfilteredEntries = "";
 
   if (property === "sleep"){
@@ -192,7 +191,7 @@ $(document).ready(function() {
   attachFoodListeners();
   attachDrinkListeners();
   attachGeneralListeners();
-ß
+
 
   journal.addJournalEntry(monday1);
   // $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li> <br>");
