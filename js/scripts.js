@@ -68,6 +68,7 @@ function attachJournalListeners() {
 
     var n = date.toDateString();
 
+
     $("#show-template").slideDown();
     $("#check-buttons").slideUp();
     $("#form").slideUp()
@@ -110,14 +111,13 @@ $(document).ready(function() {
     var notes = $("textarea#notes").val();
     var date = new Date();
 
-    var n = date.toDateString();
-    console.log(n);
+    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
 
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
     journal.addJournalEntry(newEntry);
     console.log(date, sleep, medications, exercise, food, drink, notes);
 
-    $("#all-dates").append("<li>" + date + "</li> <br>");
+    $("#all-dates").append("<li>" + n + "</li> <br>");
 
   });
 
