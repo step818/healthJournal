@@ -84,17 +84,22 @@ function attachJournalListeners() {
 // User Interface
 
 var journal = new Journal();
-journal.addJournalEntry(monday1);
-journal.addJournalEntry(monday2);
+
 
 var timeDates = journal.getSleep();
 console.log(timeDates);
 
 
 function showEntry(entryId) {
-  var contact = journal.findJournalEntry(entryId);
+  var entry = journal.findJournalEntry(entryId);
   $("#show-template").show();
-  console.log(contact);
+  $(".sleep").html(entry.sleep);
+  $(".medications").html(entry.medications);
+  $(".exercises").html(entry.exercises);
+  $(".food").html(entry.food);
+  $(".drink").html(entry.drink);
+  $(".general").html(entry.general);
+
 }
 
 
@@ -102,6 +107,12 @@ function showEntry(entryId) {
 
 $(document).ready(function() {
   attachJournalListeners()
+  journal.addJournalEntry(monday1);
+  $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li> <br>");
+
+  journal.addJournalEntry(monday2);
+  $("#all-dates").append("<li id=" + monday2.id + ">" + monday2.timeDate + "</li> <br>");
+
   $("form#formOne").submit(function(event) {
     event.preventDefault();
 
@@ -114,6 +125,7 @@ $(document).ready(function() {
     var date = new Date();
     var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
+
     journal.addJournalEntry(newEntry);
     $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
 
