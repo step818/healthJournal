@@ -112,13 +112,9 @@ $(document).ready(function() {
     var drink = $("input#drink").val();
     var notes = $("textarea#notes").val();
     var date = new Date();
-
     var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
-
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
     journal.addJournalEntry(newEntry);
-    console.log(date, sleep, medications, exercise, food, drink, notes);
-
     $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
 
   });
@@ -136,5 +132,12 @@ $(document).ready(function() {
     $("#sleep-table").slideDown();
     $("#sleep-table").slideUp();
     $("#dates").slideDown();
+  });
+
+  $("#go-back-button").click(function() {
+    $("#show-template").hide();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+    $("#form").slideDown();
   });
 });
