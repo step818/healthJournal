@@ -30,9 +30,10 @@ Journal.prototype.assignId = function() {
   return this.currentId;
 }
 Journal.prototype.findJournalEntry = function(id) {
+  console.log(this.journalEntries.length);
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
-      if (this.journalEntries[i].id == id) {
+      if (this.journalEntries[i].id == parseInt(id)) {
         return this.journalEntries[i];
       }
     }
@@ -67,6 +68,7 @@ function attachJournalListeners() {
     var date = new Date();
 
     var n = date.toDateString();
+    showEntry(this.id);
 
 
     $("#show-template").slideDown();
@@ -89,11 +91,11 @@ var timeDates = journal.getSleep();
 console.log(timeDates);
 
 
-// function showEntry(entryId) {
-//   var contact = journal.findJournalEntry(entryId);
-//   $("#show-template").show();
-//   $()
-// }
+function showEntry(entryId) {
+  var contact = journal.findJournalEntry(entryId);
+  $("#show-template").show();
+  console.log(contact);
+}
 
 
 
@@ -117,7 +119,7 @@ $(document).ready(function() {
     journal.addJournalEntry(newEntry);
     console.log(date, sleep, medications, exercise, food, drink, notes);
 
-    $("#all-dates").append("<li>" + n + "</li> <br>");
+    $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
 
   });
 
