@@ -9,7 +9,7 @@ var monday1 = new JournalEntry(
 )
 var monday2 = new JournalEntry(
   timeDate = '04/15/2000 13:30',
-  sleep = '',
+  sleep = 4,
   medications = '',
   exercises = '',
   food = "oatmeal with cranberries and pecans",
@@ -40,17 +40,17 @@ Journal.prototype.findJournalEntry = function(id) {
   }
   return false;
 }
-Journal.prototype.getSleep = function() {
-  var timeDates = [];
-  for (var i = 0; i < this.journalEntries.length; i++) {
-    if (this.journalEntries[i]) {
-      if (this.journalEntries[i].sleep) {
-        timeDates.push(this.journalEntries[i].timeDate);
-      }
-    }
-  }
-  return timeDates;
-}
+// Journal.prototype.getSleep = function() {
+//   var timeDates = [];
+//   for (var i = 0; i < this.journalEntries.length; i++) {
+//     if (this.journalEntries[i]) {
+//       if (this.journalEntries[i].sleep) {
+//         timeDates.push(this.journalEntries[i].timeDate);
+//       }
+//     }
+//   }
+//   return timeDates;
+// }
 
 function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
   this.timeDate = timeDate,
@@ -62,7 +62,21 @@ function JournalEntry(timeDate, sleep, medications, exercises, food, drink, gene
     this.general = general
 }
 
+// User Interface
+function listfilteredEntries(journal, property) {
+  var filteredEntries = $("ul#filteredDates");
+  var htmlForfilteredEntries = "";
 
+  if (property === "sleep"){
+    journal.journalEntries.forEach(function(journalEntry) {
+      if (journalEntry.sleep) {
+        htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.sleep + "</li>";
+      }
+    });
+  }
+  filteredEntries.html(htmlForfilteredEntries);
+  console.log(filteredEntries);
+}
 function attachJournalListeners() {
   $("ul#all-dates").on("click", "li", function() {
     var date = new Date();
@@ -81,13 +95,9 @@ function attachJournalListeners() {
 };
 
 
-// User Interface
 
 var journal = new Journal();
 
-
-var timeDates = journal.getSleep();
-console.log(timeDates);
 
 
 function showEntry(entryId) {
@@ -108,10 +118,10 @@ function showEntry(entryId) {
 $(document).ready(function() {
   attachJournalListeners()
   journal.addJournalEntry(monday1);
-  $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li> <br>");
+  // $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li> <br>");
 
   journal.addJournalEntry(monday2);
-  $("#all-dates").append("<li id=" + monday2.id + ">" + monday2.timeDate + "</li> <br>");
+  // $("#all-dates").append("<li id=" + monday2.id + ">" + monday2.timeDate + "</li> <br>");
 
   $("form#formOne").submit(function(event) {
     event.preventDefault();
@@ -136,7 +146,8 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#sleep-table").slideDown();
     $("#dates").slideUp();
-
+    var property = "sleep";
+    listfilteredEntries(journal, property);
     $("#sleep-table-row").show();
   });
 
