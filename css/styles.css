@@ -11,6 +11,24 @@ h1{
   display: none;
 }
 
+#medication-table {
+  display: none;
+}
+#exercise-table{
+  display: none;
+}
+
+#food-table {
+  display: none;
+}
+#drink-table{
+  display: none;
+}
+
+#notes-table {
+  display: none;
+}
+
 
 #back-button {
   width: 200px;
