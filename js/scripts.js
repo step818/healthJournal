@@ -99,8 +99,28 @@ function showEntry(entryId) {
   $(".food").html(entry.food);
   $(".drink").html(entry.drink);
   $(".general").html(entry.general);
-
 }
+
+window.onload = function () {
+  var chart = new CanvasJS.Chart("chartContainer", {
+  	animationEnabled: true,
+  	theme: "light2",
+  	title:{
+  		text: "Sleep Chart"
+  	},
+  	axisY:{
+  		includeZero: false
+  	},
+  	data: [{
+  		type: "line",
+  		dataPoints: [
+  			{y: 10},
+
+  		]
+  	}]
+  });
+  chart.render();
+  }
 
 
 $(document).ready(function() {
@@ -226,5 +246,5 @@ $(document).ready(function() {
     $("#form").slideDown();
   });
 
-  
+
 });
