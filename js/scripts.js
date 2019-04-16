@@ -121,7 +121,7 @@ $(document).ready(function() {
     var drink = $("input#drink").val();
     var notes = $("textarea#notes").val();
     var date = new Date();
-    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ":" + date.getMinutes();
+    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + date.getMinutes();
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
 
     journal.addJournalEntry(newEntry);
@@ -137,7 +137,6 @@ $(document).ready(function() {
 
     $("#sleep-table-row").show();
   });
-
   $("#sleep-back-button").click(function(){
     $("#sleep-table").slideUp();
     $("#form").slideDown();
@@ -153,6 +152,12 @@ $(document).ready(function() {
 
     $("#medication-table-row").show();
   });
+  $("#medication-back-button").click(function(){
+    $("#medication-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
 
   $("#exercise-button").click(function() {
     $("#form").slideUp();
@@ -161,6 +166,12 @@ $(document).ready(function() {
     $("#dates").slideUp();
 
     $("#exercise-table-row").show();
+  });
+  $("#exercise-back-button").click(function(){
+    $("#exercise-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
   });
 
   $("#food-button").click(function() {
@@ -171,6 +182,12 @@ $(document).ready(function() {
 
     $("#food-table-row").show();
   });
+  $("#food-back-button").click(function(){
+    $("#food-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
 
   $("#drink-button").click(function() {
     $("#form").slideUp();
@@ -179,6 +196,12 @@ $(document).ready(function() {
     $("#dates").slideUp();
 
     $("#drink-table-row").show();
+  });
+  $("#drink-back-button").click(function(){
+    $("#drink-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
   });
 
   $("#notes-button").click(function() {
@@ -189,6 +212,12 @@ $(document).ready(function() {
 
     $("#notes-table-row").show();
   });
+  $("#notes-back-button").click(function(){
+    $("#notes-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
 
   $("#go-back-button").click(function() {
     $("#show-template").hide();
@@ -196,4 +225,6 @@ $(document).ready(function() {
     $("#check-buttons").slideDown();
     $("#form").slideDown();
   });
+
+
 });
