@@ -103,8 +103,6 @@ function showEntry(entryId) {
 }
 
 
-
-
 $(document).ready(function() {
   attachJournalListeners()
   journal.addJournalEntry(monday1);
@@ -140,6 +138,13 @@ $(document).ready(function() {
     $("#sleep-table-row").show();
   });
 
+  $("#sleep-back-button").click(function(){
+    $("#sleep-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
+
   $("#medication-button").click(function() {
     $("#form").slideUp();
     $("#check-buttons").slideUp();
@@ -149,22 +154,40 @@ $(document).ready(function() {
     $("#medication-table-row").show();
   });
 
-  $("#sleep-back-button").click(function() {
-    $("#form").slideDown();
-    $("#check-buttons").slideDown();
-    $("#sleep-table").slideDown();
-    $("#sleep-table-row").hide();
-    $("#medication-table-row").hide();
-    $("#dates").slideDown();
+  $("#exercise-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#exercise-table").slideDown();
+    $("#dates").slideUp();
+
+    $("#exercise-table-row").show();
   });
 
-  $("#medication-back-button").click(function() {
-    $("#form").slideDown();
-    $("#check-buttons").slideDown();
-    $("#medication-table").slideDown();
-    $("#sleep-table-row").hide();
-    $("#medication-table-row").hide();
-    $("#dates").slideDown();
+  $("#food-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#food-table").slideDown();
+    $("#dates").slideUp();
+
+    $("#food-table-row").show();
+  });
+
+  $("#drink-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#drink-table").slideDown();
+    $("#dates").slideUp();
+
+    $("#drink-table-row").show();
+  });
+
+  $("#notes-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#notes-table").slideDown();
+    $("#dates").slideUp();
+
+    $("#notes-table-row").show();
   });
 
   $("#go-back-button").click(function() {
