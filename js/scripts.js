@@ -40,17 +40,6 @@ Journal.prototype.findJournalEntry = function(id) {
   }
   return false;
 }
-// Journal.prototype.getSleep = function() {
-//   var timeDates = [];
-//   for (var i = 0; i < this.journalEntries.length; i++) {
-//     if (this.journalEntries[i]) {
-//       if (this.journalEntries[i].sleep) {
-//         timeDates.push(this.journalEntries[i].timeDate);
-//       }
-//     }
-//   }
-//   return timeDates;
-// }
 
 function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
   this.timeDate = timeDate,
@@ -123,7 +112,7 @@ function attachMedicationsListeners() {
     showEntry(this.id);
   });
 }
-function attachExerciseListeners() {
+function attachExercisesListeners() {
   $("ul#filteredExercisesDates").on("click", "li", function() {
     showEntry(this.id);
   });
@@ -181,23 +170,18 @@ function showEntry(entryId) {
 }
 
 
-
-
 $(document).ready(function() {
   attachJournalListeners();
   attachSleepListeners();
   attachMedicationsListeners();
-  attachExerciseListeners();
+  attachExercisesListeners();
   attachFoodListeners();
   attachDrinkListeners();
   attachGeneralListeners();
 
 
   journal.addJournalEntry(monday1);
-  // $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li> <br>");
-
   journal.addJournalEntry(monday2);
-  // $("#all-dates").append("<li id=" + monday2.id + ">" + monday2.timeDate + "</li> <br>");
 
   $("form#formOne").submit(function(event) {
     event.preventDefault();
@@ -209,7 +193,7 @@ $(document).ready(function() {
     var drink = $("input#drink").val();
     var notes = $("textarea#notes").val();
     var date = new Date();
-    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ":" + date.getMinutes();
+    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + date.getMinutes();
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
 
     journal.addJournalEntry(newEntry);
@@ -226,6 +210,12 @@ $(document).ready(function() {
     listfilteredEntries(journal, property);
     $("#sleep-table-row").show();
   });
+  $("#sleep-back-button").click(function(){
+    $("#sleep-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
 
   $("#medication-button").click(function() {
     $("#form").slideUp();
@@ -236,23 +226,75 @@ $(document).ready(function() {
     listfilteredEntries(journal, property);
     $("#medication-table-row").show();
   });
-
-  $("#sleep-back-button").click(function() {
+  $("#medication-back-button").click(function(){
+    $("#medication-table").slideUp();
     $("#form").slideDown();
-    $("#check-buttons").slideDown();
-    $("#sleep-table").slideDown();
-    $("#sleep-table-row").hide();
-    $("#medication-table-row").hide();
     $("#dates").slideDown();
+    $("#check-buttons").slideDown();
   });
 
-  $("#medication-back-button").click(function() {
+  $("#exercise-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#exercise-table").slideDown();
+    $("#dates").slideUp();
+    var property = "exercises";
+    listfilteredEntries(journal, property);
+    $("#exercise-table-row").show();
+  });
+  $("#exercise-back-button").click(function(){
+    $("#exercise-table").slideUp();
     $("#form").slideDown();
-    $("#check-buttons").slideDown();
-    $("#medication-table").slideDown();
-    $("#sleep-table-row").hide();
-    $("#medication-table-row").hide();
     $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
+
+  $("#food-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#food-table").slideDown();
+    $("#dates").slideUp();
+    var property = "food";
+    listfilteredEntries(journal, property);
+    $("#food-table-row").show();
+  });
+  $("#food-back-button").click(function(){
+    $("#food-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
+
+  $("#drink-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#drink-table").slideDown();
+    $("#dates").slideUp();
+    var property = "drink";
+    listfilteredEntries(journal, property);
+    $("#drink-table-row").show();
+  });
+  $("#drink-back-button").click(function(){
+    $("#drink-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
+
+  $("#notes-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#notes-table").slideDown();
+    $("#dates").slideUp();
+    var property = "general";
+    listfilteredEntries(journal, property);
+    $("#notes-table-row").show();
+  });
+  $("#notes-back-button").click(function(){
+    $("#notes-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
   });
 
   $("#go-back-button").click(function() {
@@ -261,4 +303,6 @@ $(document).ready(function() {
     $("#check-buttons").slideDown();
     $("#form").slideDown();
   });
+
+
 });
