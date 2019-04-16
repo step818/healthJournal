@@ -23,28 +23,35 @@ img {
   display: none;
 }
 
-#medication-table{
-  display: none;
+ul {
+	list-style-type: none;
+}
+#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates li {
+  color: blue;
+}
+#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-#sleep-table{
-  display: none;
-}
-#exercise-table{
-  display: none;
-}
-
-#food-table{
-  display: none;
-}
-#drink-table{
-  display: none;
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
-#notes-table{
-  display: none;
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 
+#medication-table, #sleep-table, #exercise-table, #food-table, #drink-table, #notes-table{
+  display: none;
+}
 
 .scrollbar {
 margin-left: 0px;
@@ -205,4 +212,5 @@ bcontainer{max-width:1170px; margin:auto;}
 100% {
     transform: scale(1);
 }
+>>>>>>> master
 }
