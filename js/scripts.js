@@ -68,15 +68,56 @@ function listfilteredEntries(journal, property) {
   var htmlForfilteredEntries = "";
 
   if (property === "sleep"){
+    var filteredEntries = $("ul#filteredSleepDates");
     journal.journalEntries.forEach(function(journalEntry) {
       if (journalEntry.sleep) {
         htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.sleep + "</li>";
       }
     });
+  } else if (property === "medications") {
+      var filteredEntries = $("ul#filteredMedicationsDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.medications) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.medications + "</li>";
+        }
+      });
+  } else if (property === "exercises") {
+      var filteredEntries = $("ul#filteredExercisesDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.exercises) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.exercises + "</li>";
+        }
+      });
+  } else if (property === "food") {
+      var filteredEntries = $("ul#filteredFoodDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.food) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.food + "</li>";
+        }
+    });
+  } else if (property === "drink") {
+      var filteredEntries = $("ul#filteredDrinkDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.drink) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.drink + "</li>";
+        }
+    });
+  } else if (property === "general") {
+      var filteredEntries = $("ul#filteredGeneralDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.general) {
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.general + "</li>";
+        }
+      });
   }
   filteredEntries.html(htmlForfilteredEntries);
   console.log(filteredEntries);
 }
+
+
+
+
+
 function attachJournalListeners() {
   $("ul#all-dates").on("click", "li", function() {
     var date = new Date();
@@ -156,7 +197,8 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#medication-table").slideDown();
     $("#dates").slideUp();
-
+    var property = "medications";
+    listfilteredEntries(journal, property);
     $("#medication-table-row").show();
   });
 
