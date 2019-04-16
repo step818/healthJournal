@@ -214,3 +214,12 @@ bcontainer{max-width:1170px; margin:auto;}
 }
 >>>>>>> master
 }
+
+
+
+
+#filteredSleepDates {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 3fr 6fr;
+}

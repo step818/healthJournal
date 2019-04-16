@@ -30,9 +30,10 @@ Journal.prototype.assignId = function() {
   return this.currentId;
 }
 Journal.prototype.findJournalEntry = function(id) {
-  console.log(this.journalEntries.length);
+  //console.log(this.journalEntries.length);
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
+      //console.log(this.journalEntries[i].id, id);
       if (this.journalEntries[i].id == parseInt(id)) {
         return this.journalEntries[i];
       }
@@ -56,45 +57,45 @@ function listfilteredEntries(journal, property) {
   var htmlForfilteredEntries = "";
 
   if (property === "sleep"){
-    var filteredEntries = $("ul#filteredSleepDates");
+    var filteredEntries = $("#filteredSleepDates");
     journal.journalEntries.forEach(function(journalEntry) {
       if (journalEntry.sleep) {
-        htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.sleep + "</li>";
+        htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.sleep}<p></div>`;
       }
     });
   } else if (property === "medications") {
-      var filteredEntries = $("ul#filteredMedicationsDates");
+      var filteredEntries = $("#filteredMedicationsDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.medications) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.medications + "</li>";
+          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.medications}<p></div>`;
         }
       });
   } else if (property === "exercises") {
-      var filteredEntries = $("ul#filteredExercisesDates");
+      var filteredEntries = $("#filteredExercisesDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.exercises) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.exercises + "</li>";
+          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.exercises}<p></div>`;
         }
       });
   } else if (property === "food") {
-      var filteredEntries = $("ul#filteredFoodDates");
+      var filteredEntries = $("#filteredFoodDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.food) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.food + "</li>";
+          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.food}<p></div>`;
         }
     });
   } else if (property === "drink") {
-      var filteredEntries = $("ul#filteredDrinkDates");
+      var filteredEntries = $("#filteredDrinkDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.drink) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.drink + "</li>";
+          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.drink}<p></div>`;
         }
     });
   } else if (property === "general") {
-      var filteredEntries = $("ul#filteredGeneralDates");
+      var filteredEntries = $("#filteredGeneralDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.general) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.general + "</li>";
+          htmlForfilteredEntries += `<div id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div><p> ${journalEntry.general}<p></div>`;
         }
       });
   }
@@ -103,39 +104,41 @@ function listfilteredEntries(journal, property) {
 }
 
 function attachSleepListeners() {
-  $("ul#filteredSleepDates").on("click", "li", function() {
+  $("#filteredSleepDates").on("click", "div", function() {
+  // $("#filteredSleepDates").on("click", "li", function() {
     showEntry(this.id);
   });
+
 }
 function attachMedicationsListeners() {
-  $("ul#filteredMedicationsDates").on("click", "li", function() {
+  $("#filteredMedicationsDates").on("click", "div", function() {
     showEntry(this.id);
   });
 }
 function attachExercisesListeners() {
-  $("ul#filteredExercisesDates").on("click", "li", function() {
+  $("#filteredExercisesDates").on("click", "div", function() {
     showEntry(this.id);
   });
 }
 function attachFoodListeners() {
-  $("ul#filteredFoodDates").on("click", "li", function() {
+  $("#filteredFoodDates").on("click", "div", function() {
     showEntry(this.id);
   });
 }
 function attachDrinkListeners() {
-  $("ul#filteredDrinkDates").on("click", "li", function() {
+  $("#filteredDrinkDates").on("click", "div", function() {
     showEntry(this.id);
   });
 }
 function attachGeneralListeners() {
-  $("ul#filteredGeneralDates").on("click", "li", function() {
+  $("#filteredGeneralDates").on("click", "div", function() {
     showEntry(this.id);
   });
 }
 
 
 function attachJournalListeners() {
-  $("ul#all-dates").on("click", "li", function() {
+  $("#all-dates").on("click", "li", function() {
     var date = new Date();
 
     var n = date.toDateString();
@@ -151,21 +154,30 @@ function attachJournalListeners() {
   });
 };
 
-
-
 var journal = new Journal();
 
 
+// var sleepIsShown = false;
+
 
 function showEntry(entryId) {
-  var entry = journal.findJournalEntry(entryId);
-  $("#show-template").show();
-  $(".sleep").html(entry.sleep);
-  $(".medications").html(entry.medications);
-  $(".exercises").html(entry.exercises);
-  $(".food").html(entry.food);
-  $(".drink").html(entry.drink);
-  $(".general").html(entry.general);
+
+  // if (sleepIsShown === false) {
+
+    var entry = journal.findJournalEntry(entryId);
+    $("#show-template").show();
+    $(".sleep").html(entry.sleep);
+    $(".medications").html(entry.medications);
+    $(".exercises").html(entry.exercises);
+    $(".food").html(entry.food);
+    $(".drink").html(entry.drink);
+    $(".general").html(entry.general);
+    // sleepIsShown = true;
+  // } else {
+    $("#show-template").hide();
+    // sleepIsShown = false;
+  // }
+
 
 }
 
@@ -197,7 +209,7 @@ $(document).ready(function() {
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
 
     journal.addJournalEntry(newEntry);
-    $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
+    $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li>");
 
   });
 
