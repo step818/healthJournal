@@ -156,29 +156,15 @@ function attachJournalListeners() {
 
 var journal = new Journal();
 
-
-// var sleepIsShown = false;
-
-
 function showEntry(entryId) {
-
-  // if (sleepIsShown === false) {
-
-    var entry = journal.findJournalEntry(entryId);
-    $("#show-template").show();
-    $(".sleep").html(entry.sleep);
-    $(".medications").html(entry.medications);
-    $(".exercises").html(entry.exercises);
-    $(".food").html(entry.food);
-    $(".drink").html(entry.drink);
-    $(".general").html(entry.general);
-    // sleepIsShown = true;
-  // } else {
-    $("#show-template").hide();
-    // sleepIsShown = false;
-  // }
-
-
+  var entry = journal.findJournalEntry(entryId);
+  $("#show-template").show();
+  $(".sleep").html(entry.sleep);
+  $(".medications").html(entry.medications);
+  $(".exercises").html(entry.exercises);
+  $(".food").html(entry.food);
+  $(".drink").html(entry.drink);
+  $(".general").html(entry.general);
 }
 
 
