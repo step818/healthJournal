@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/jquery-3.4.0.js"></script>
@@ -13,18 +13,29 @@
 
   <title>Health Journal</title>
 </head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" relative="stylesheet">
 
 <body>
   <div class="container">
+
     <div class="jumbotron">
-      <h1>Health Journal</h1>
+
+
+      <h1>Health Journal </h1>
+      <div class="heart_img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH9AvU2jt3jAVK90LFSayYrHnC_XrC1JnrpHoOND1kAXfVYDxA-Q" alt="heaert">
+        </div>
+
+
+
+
+</div>
       <div class="center">
         <div class="heart"></div>
       </div>
     </div>
 
     <div class="row">
-      <div id="form" class="col-md-7">
+      <div id="form" class="col-md-6">
         <div class="card card-info">
           <div class="card-header bg-secondary text-white">
             Fill the form
@@ -32,30 +43,30 @@
           <div class="card-body">
             <form id="formOne">
               <div class="form-group">
-                <label for="sleep">Sleep</label>
+                <label for="sleep">Sleep</label><img src="img/sleep-icon.svg">
                 <input class="form-control" type="number" id="sleep">
               </div>
 
               <div class="form-group">
-                <label for="medications">Medications</label>
+                <label for="medications">Medications</label><img src="img/medication-icon.svg">
                 <textarea class="form-control" id="medications" rows="3"></textarea>
               </div>
 
               <div class="form-group">
-                <label for="exercise">Exercise</label>
+                <label for="exercise">Exercise</label><img src="img/exercise-icon.svg">
                 <textarea class="form-control" type="text" id="exercise" rows="3"></textarea>
               </div>
 
               <div class="form-group">
-                <label for="food">Food</label>
+                <label for="food">Food</label><img src="img/food-icon.svg">
                 <input class="form-control" type="text" id="food">
               </div>
               <div class="form-group">
-                <label for="drink">Drink</label>
+                <label for="drink">Drink</label><img src="img/drink.svg">
                 <input class="form-control" type="text" id="drink">
               </div>
               <div class="form-group">
-                <label for="notes">Notes</label>
+                <label for="notes">Notes</label><img src="img/notes-icon.svg">
                 <textarea class="form-control" id="notes" rows="3"></textarea>
               </div>
               <button class="btn-danger" type="submit" name="button">Submit</button>
@@ -80,19 +91,23 @@
         </div>
       </div>
 
-
       <div id="dates" class="col-md-3">
         <div class="card card-info">
           <div class="card-header bg-secondary text-white">
             Dates
           </div>
-          <div class="card-body">
-            <ul id="all-dates">
-            </ul>
+          <div class="scrollbar scrollbar-primary">
+            <div class="force-overflow">
+              <div class="card-body">
+                <ul id="all-dates">
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+  </div>
   </div>
   <div id="sleep-table">
     <div class="row" id="sleep-table-row">
@@ -102,6 +117,7 @@
             Sleep table
           </div>
           <div class="card-body">
+
           </div>
         </div>
       </div>
@@ -194,16 +210,16 @@
     <div class="row">
       <div class="col-md-9">
         <div class="card card-info">
-          <div class="card-header bg-primary">
+          <div class="card-header bg-secondary text-white">
             Your template for :<p><span id="display-date"></span></p>
-            <p>Sleep:<span class="sleep"></span></p>
-            <p>Medications:<span class="medications"></span></p>
-            <p>Exercises:<span class="exercises"></span></p>
-            <p>Food:<span class="food"></span></p>
-            <p>Beverages:<span class="drink"></span></p>
-            <p>Notes:<span class="general"></span></p>
-          </div>
-          <div class="card-header">
+            </div>
+            <div class="card-body">
+            <p>Sleep: <span class="sleep"></span></p>
+            <p>Medications: <span class="medications"></span></p>
+            <p>Exercises: <span class="exercises"></span></p>
+            <p>Food: <span class="food"></span></p>
+            <p>Beverages: <span class="drink"></span></p>
+            <p>Notes: <span class="general"></span></p>
           </div>
         </div>
       </div>
