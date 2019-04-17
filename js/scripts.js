@@ -7,7 +7,7 @@ var monday1 = new JournalEntry(
   food = "oatmeal with cranberries and pecans",
   drink = "12oz water",
   general = "woke up earlier than I wanted but am feeling generally well rested"
-)
+);
 
 var monday2 = new JournalEntry(
   timeDate = '04/15/2019 13:00',
@@ -17,7 +17,7 @@ var monday2 = new JournalEntry(
   food = "chicken with rice, beans, guacamole, and lettuce",
   drink = "12oz orange san pelligrino",
   general = ""
-)
+);
 
 var monday3 = new JournalEntry(
   timeDate = '04/15/2019 19:00',
@@ -27,7 +27,7 @@ var monday3 = new JournalEntry(
   food = "roast beef, carrots, potatoes, and snow peas",
   drink = "12oz orange san pelligrino",
   general = "energy very low this evening"
-)
+);
 
 var tuesday1 = new JournalEntry(
   timeDate = "04/16/2019 08:00",
@@ -37,20 +37,20 @@ var tuesday1 = new JournalEntry(
   food = "breakfast sandwich: 1 egg, english muffin, 1 strip bacon",
   drink = "16oz water",
   general = "Still recovering from illness but feeling much better"
-)
+);
 // Business logic
 function Journal() {
   this.journalEntries = [],
-    this.currentId = 0
+    this.currentId = 0;
 }
 Journal.prototype.addJournalEntry = function(journalEntry) {
   journalEntry.id = this.assignId();
   this.journalEntries.push(journalEntry);
-}
+};
 Journal.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
-}
+};
 Journal.prototype.findJournalEntry = function(id) {
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
@@ -60,7 +60,7 @@ Journal.prototype.findJournalEntry = function(id) {
     }
   }
   return false;
-}
+};
 Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises, food, drink, general) {
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
@@ -74,7 +74,7 @@ Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises,
       }
     }
   }
-}
+};
 // Journal.prototype.findJournalEntry = function(id) {
 //   var sleeps=[];
 //   for (var i = 0; i < this.journalEntries.length; i++) {
@@ -116,12 +116,12 @@ Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises,
 
 function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
   this.timeDate = timeDate,
-    this.sleep = sleep,
-    this.medications = medications,
-    this.exercises = exercises,
-    this.food = food,
-    this.drink = drink,
-    this.general = general
+  this.sleep = sleep,
+  this.medications = medications,
+  this.exercises = exercises,
+  this.food = food,
+  this.drink = drink,
+  this.general = general;
 }
 
 // User Interface
@@ -254,15 +254,14 @@ function attachJournalListeners() {
     var n = date.toDateString();
     showEntry(this.id);
 
-
     $("#show-template").slideDown();
     $("#check-buttons").slideUp();
-    $("#form").slideUp()
+    $("#form").slideUp();
     $("#display-date").text(n);
     $("#display-date").show();
     $("#dates").slideUp();
   });
-};
+}
 
 var journal = new Journal();
 
@@ -276,14 +275,12 @@ function showEntry(entryId) {
   $(".food").html(entry.food);
   $(".drink").html(entry.drink);
   $(".general").html(entry.general);
-  // var buttons = $("#editEntry");
-  // buttons.empty();
-  // buttons.append("<button class='btn-lg btn-danger editButton' id=" + entry.id + ">Save Changes</button>");
 }
 
 function clearFields(){
   $("input#sleep").val("");
   $("textarea#medications").val("");
+  $("textarea#exercise").val("");
   $("input#food").val("");
   $("input#drink").val("");
   $("textarea#notes").val("");
@@ -305,7 +302,7 @@ function getDateTime() {
     hour = '0' + hour;
   }
   if (minutes.length === 1) {
-    day = '0' + minutes;
+    minutes = '0' + minutes;
   }
   var timeDate = month + '/' + day + '/' + date.getFullYear() + ' ' + hour + ":" + minutes;
   return timeDate;
@@ -341,8 +338,6 @@ $(document).ready(function() {
     var food = $("input#food").val();
     var drink = $("input#drink").val();
     var notes = $("textarea#notes").val();
-    // var date = new Date();
-    // var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + date.getMinutes();
     var date = getDateTime();
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
 
