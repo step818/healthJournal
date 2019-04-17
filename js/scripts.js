@@ -1,24 +1,42 @@
-
-
-
-
+//Sample data to prepopulate and present
 var monday1 = new JournalEntry(
-  timeDate = '04/15/2000 13:00',
+  timeDate = '04/15/2019 08:00',
   sleep = 8,
-  medications = "100mg caffiene, 800mg ibuprofen",
+  medications = "multi-vitamin, vitamin b, fish oil/vitamin",
+  exercises = "cervical traction, shoulder press, upper trap stretch",
+  food = "oatmeal with cranberries and pecans",
+  drink = "12oz water",
+  general = "woke up earlier than I wanted but am feeling generally well rested"
+)
+
+var monday2 = new JournalEntry(
+  timeDate = '04/15/2019 13:00',
+  sleep = '',
+  medications = "100mg caffeine, 800mg ibuprofen, 15 mg adderall",
   exercises = "30min walk, 2 miles; lat pulls - 30lb 2 sets of 10",
   food = "chicken with rice, beans, guacamole, and lettuce",
   drink = "12oz orange san pelligrino",
-  general = "woke up earlier than I wanted to but I feel decently rested"
+  general = ""
 )
-var monday2 = new JournalEntry(
-  timeDate = '04/15/2000 13:30',
-  sleep = 4,
-  medications = '',
-  exercises = '',
-  food = "oatmeal with cranberries and pecans",
-  drink = "12oz water",
-  general = ''
+
+var monday3 = new JournalEntry(
+  timeDate = '04/15/2019 19:00',
+  sleep = '',
+  medications = "60mg Latuda, Claritin, multi-vitamin, vitamin b, fish oil/vitamin",
+  exercises = "ankles w/ resistance band",
+  food = "roast beef, carrots, potatoes, and snow peas",
+  drink = "12oz orange san pelligrino",
+  general = "energy very low this evening"
+)
+
+var tuesday1 = new JournalEntry(
+  timeDate = "04/16/2019 08:00",
+  sleep = 7,
+  medications = "Wellbutrin, Celexa, Zyrtec",
+  exercises = "cervical/shoulder stretches, 20 minute walk",
+  food = "breakfast sandwich: 1 egg, english muffin, 1 strip bacon",
+  drink = "16oz water",
+  general = "Still recovering from illness but feeling much better"
 )
 // Business logic
 function Journal() {
@@ -248,7 +266,35 @@ function showEntry(entryId) {
   $(".general").html(entry.general);
 }
 
+function clearFields(){
+  $("input#sleep").val("");
+  $("textarea#medications").val("");
+  $("input#food").val("");
+  $("input#drink").val("");
+  $("textarea#notes").val("");
+}
 
+function getDateTime() {
+  var date = new Date();
+  var month = (date.getMonth() + 1).toString();
+  var day =  date.getDate().toString();
+  var hour = date.getHours().toString();
+  var minutes = date.getMinutes().toString();
+  if (month.length === 1) {
+    month = '0' + month;
+  }
+  if (day.length === 1) {
+    day = '0' + day;
+  }
+  if (hour.length === 1) {
+    hour = '0' + hour;
+  }
+  if (minutes.length === 1) {
+    day = '0' + minutes;
+  }
+  var timeDate = month + '/' + day + '/' + date.getFullYear() + ' ' + hour + ":" + minutes;
+  return timeDate;
+}
 
 
 $(document).ready(function() {
@@ -273,15 +319,16 @@ $(document).ready(function() {
     var food = $("input#food").val();
     var drink = $("input#drink").val();
     var notes = $("textarea#notes").val();
-    var date = new Date();
-    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + date.getMinutes();
+    // var date = new Date();
+    // var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + date.getMinutes();
+    var date = getDateTime();
     var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
 
     journal.addJournalEntry(newEntry);
-    $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li>");
+    $("#all-dates").append("<li id=" + newEntry.id + ">" + date + "</li>");
 
 
-    
+
 
   });
 
