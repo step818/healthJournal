@@ -52,16 +52,28 @@ Journal.prototype.assignId = function() {
   return this.currentId;
 }
 Journal.prototype.findJournalEntry = function(id) {
-  //console.log(this.journalEntries.length);
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
-      //console.log(this.journalEntries[i].id, id);
       if (this.journalEntries[i].id == parseInt(id)) {
         return this.journalEntries[i];
       }
     }
   }
   return false;
+}
+Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises, food, drink, general) {
+  for (var i = 0; i < this.journalEntries.length; i++) {
+    if (this.journalEntries[i]) {
+      if (this.journalEntries[i].id == parseInt(id)) {
+        this.journalEntries[i].sleep = sleep;
+        this.journalEntries[i].medications = medications;
+        this.journalEntries[i].exercises = exercises;
+        this.journalEntries[i].food = food;
+        this.journalEntries[i].drink = drink;
+        this.journalEntries[i].general = general;
+      }
+    }
+  }
 }
 // Journal.prototype.findJournalEntry = function(id) {
 //   var sleeps=[];
@@ -198,7 +210,6 @@ function listfilteredEntries(journal, property) {
 
 function attachSleepListeners() {
   $("#filteredSleepDates").on("click", "div", function() {
-  // $("#filteredSleepDates").on("click", "li", function() {
     showEntry(this.id);
     $("#sleep-back-button").hide();
   });
@@ -257,6 +268,7 @@ var journal = new Journal();
 
 function showEntry(entryId) {
   var entry = journal.findJournalEntry(entryId);
+  $("#editId").html(entryId);
   $("#show-template").show();
   $(".sleep").html(entry.sleep);
   $(".medications").html(entry.medications);
@@ -264,6 +276,9 @@ function showEntry(entryId) {
   $(".food").html(entry.food);
   $(".drink").html(entry.drink);
   $(".general").html(entry.general);
+  // var buttons = $("#editEntry");
+  // buttons.empty();
+  // buttons.append("<button class='btn-lg btn-danger editButton' id=" + entry.id + ">Save Changes</button>");
 }
 
 function clearFields(){
@@ -334,6 +349,7 @@ $(document).ready(function() {
     journal.addJournalEntry(newEntry);
     $("#all-dates").append("<li id=" + newEntry.id + ">" + date + "</li>");
 
+    clearFields();
 
 
 
@@ -451,5 +467,14 @@ $(document).ready(function() {
     $("#form").slideDown();
   });
 
-
+  $("#editEntry").click(function() {
+      var id = $("#editId").html();
+      var sleep = $("#editSleep").html();
+      var medications = $("#editMeds").html();
+      var exercises = $("#editExercises").html();
+      var food = $("#editFood").html();
+      var drink = $("#editDrink").html();
+      var general = $("#editGeneral").html();
+      journal.editJournalEntry(id, sleep, medications, exercises, food, drink, general);
+    });
 });

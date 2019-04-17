@@ -220,14 +220,18 @@
         <div class="card card-info">
           <div class="card-header bg-secondary text-white">
             Your template for :<p><span id="display-date"></span></p>
+            <h4>Click any line to edit!</h4>
             </div>
             <div class="card-body">
-            <p>Sleep: <span class="sleep"></span></p>
-            <p>Medications: <span class="medications"></span></p>
-            <p>Exercises: <span class="exercises"></span></p>
-            <p>Food: <span class="food"></span></p>
-            <p>Beverages: <span class="drink"></span></p>
-            <p>Notes: <span class="general"></span></p>
+              <p id="hideId">ID: <span id="editId"</span></p>
+              <p><strong>Sleep:</strong> <span contenteditable="true" id="editSleep" class="sleep contenteditable"></span></p>
+              <p><strong>Medications:</strong> <span contenteditable="true" id="editMeds" class="medications contenteditable"></span></p>
+              <p><strong>Exercises:</strong> <span contenteditable="true" id="editExercises" class="exercises contenteditable"></span></p>
+              <p><strong>Food:</strong> <span contenteditable="true" id="editFood" class="food contenteditable"></span></p>
+              <p><strong>Beverages:</strong> <span contenteditable="true" id="editDrink" class="drink contenteditable"></span></p>
+              <p><strong>Notes:</strong> <span contenteditable="true" id="editGeneral" class="general contenteditable"></span></p>
+            <!-- <div id="editEntry"></div> -->
+            <button id="editEntry" class="btn-lg btn-danger editButton" type="button" name="button">Save Changes</button>
           </div>
         </div>
       </div>
