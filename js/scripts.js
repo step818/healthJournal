@@ -5,7 +5,8 @@ var monday1 = new JournalEntry(
   medications = "multi-vitamin, vitamin b, fish oil/vitamin",
   exercises = "cervical traction, shoulder press, upper trap stretch",
   food = "oatmeal with cranberries and pecans",
-  drink = "12oz water",
+  drink = "water",
+  drinkAmount = "12oz",
   general = "woke up earlier than I wanted but am feeling generally well rested"
 );
 
@@ -15,7 +16,8 @@ var monday2 = new JournalEntry(
   medications = "100mg caffeine, 800mg ibuprofen, 15 mg adderall",
   exercises = "30min walk, 2 miles; lat pulls - 30lb 2 sets of 10",
   food = "chicken with rice, beans, guacamole, and lettuce",
-  drink = "12oz orange san pelligrino",
+  drink = "orange san pelligrino",
+  drinkAmount = "12oz",
   general = ""
 );
 
@@ -25,7 +27,8 @@ var monday3 = new JournalEntry(
   medications = "60mg Latuda, Claritin, multi-vitamin, vitamin b, fish oil/vitamin",
   exercises = "ankles w/ resistance band",
   food = "roast beef, carrots, potatoes, and snow peas",
-  drink = "12oz orange san pelligrino",
+  drink = "orange san pelligrino",
+  drinkAmount = "12oz",
   general = "energy very low this evening"
 );
 
@@ -35,7 +38,8 @@ var tuesday1 = new JournalEntry(
   medications = "Wellbutrin, Celexa, Zyrtec",
   exercises = "cervical/shoulder stretches, 20 minute walk",
   food = "breakfast sandwich: 1 egg, english muffin, 1 strip bacon",
-  drink = "16oz water",
+  drink = "water",
+  drinkAmount = "16oz",
   general = "Still recovering from illness but feeling much better"
 );
 // Business logic
@@ -60,8 +64,8 @@ Journal.prototype.findJournalEntry = function(id) {
     }
   }
   return false;
-};
-Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises, food, drink, general) {
+}
+Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises, food, drink, drinkAmount, general) {
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
       if (this.journalEntries[i].id == parseInt(id)) {
@@ -70,6 +74,7 @@ Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises,
         this.journalEntries[i].exercises = exercises;
         this.journalEntries[i].food = food;
         this.journalEntries[i].drink = drink;
+        this.journalEntries[i].drinkAmount = drinkAmount;
         this.journalEntries[i].general = general;
       }
     }
@@ -114,14 +119,15 @@ Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises,
 // chart.render();
 // };
 
-function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
+function JournalEntry(timeDate, sleep, medications, exercises, food, drink, drinkAmount, general) {
   this.timeDate = timeDate,
-  this.sleep = sleep,
-  this.medications = medications,
-  this.exercises = exercises,
-  this.food = food,
-  this.drink = drink,
-  this.general = general;
+    this.sleep = sleep,
+    this.medications = medications,
+    this.exercises = exercises,
+    this.food = food,
+    this.drink = drink,
+    this.drinkAmount = drinkAmount,
+    this.general = general
 }
 
 // User Interface
@@ -191,6 +197,18 @@ function listfilteredEntries(journal, property) {
           htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.drink}<p></div>`;
           line+=1;        }
     });
+  } else if (property === "drinkAmount") {
+      var filteredEntries = $("#filteredDrinkAmountDates");
+      journal.journalEntries.forEach(function(journalEntry) {
+        if (journalEntry.drinkAmount) {
+          if (line%2 === 1) {
+            appliedClass = 'oddRow';
+          } else {
+            appliedClass = "evenRow";
+          }
+          htmlForfilteredEntries += `<div class=${appliedClass} id=${journalEntry.id}><p>${journalEntry.timeDate}</p></div><div class=${appliedClass}><p> ${journalEntry.drink}<p></div>`;
+          line+=1;        }
+    });
   } else if (property === "general") {
       var filteredEntries = $("#filteredGeneralDates");
       journal.journalEntries.forEach(function(journalEntry) {
@@ -239,6 +257,12 @@ function attachDrinkListeners() {
     $("#drink-back-button").hide();
   });
 }
+function attachDrinkAmountListeners() {
+  $("#filteredDrinkAmountDates").on("click", "div", function() {
+    showEntry(this.id);
+    $("#drinkAmount-back-button").hide();
+  });
+}
 function attachGeneralListeners() {
   $("#filteredGeneralDates").on("click", "div", function() {
     showEntry(this.id);
@@ -274,6 +298,7 @@ function showEntry(entryId) {
   $(".exercises").html(entry.exercises);
   $(".food").html(entry.food);
   $(".drink").html(entry.drink);
+  $(".drinkAmount").html(entry.drinkAmount)
   $(".general").html(entry.general);
 }
 
@@ -283,6 +308,7 @@ function clearFields(){
   $("textarea#exercise").val("");
   $("input#food").val("");
   $("input#drink").val("");
+  $("input#drinkAmount").val("");
   $("textarea#notes").val("");
 }
 
@@ -337,9 +363,10 @@ $(document).ready(function() {
     var exercise = $("textarea#exercise").val();
     var food = $("input#food").val();
     var drink = $("input#drink").val();
+    var drinkAmount = $("input#drinkAmount").val();
     var notes = $("textarea#notes").val();
     var date = getDateTime();
-    var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
+    var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, drinkAmount, notes);
 
     journal.addJournalEntry(newEntry);
     $("#all-dates").append("<li id=" + newEntry.id + ">" + date + "</li>");
@@ -433,6 +460,22 @@ $(document).ready(function() {
     $("#check-buttons").slideDown();
   });
 
+  $("#drinkAmount-button").click(function() {
+    $("#form").slideUp();
+    $("#check-buttons").slideUp();
+    $("#drinkAmount-table").slideDown();
+    $("#dates").slideUp();
+    var property = "drinkAmount";
+    listfilteredEntries(journal, property);
+    $("#drinkAmount-table-row").show();
+  });
+  $("#drinkAmount-back-button").click(function(){
+    $("#drinkAmount-table").slideUp();
+    $("#form").slideDown();
+    $("#dates").slideDown();
+    $("#check-buttons").slideDown();
+  });
+
   $("#notes-button").click(function() {
     $("#form").slideUp();
     $("#check-buttons").slideUp();
@@ -456,6 +499,7 @@ $(document).ready(function() {
     $("#medication-table").hide();
     $("#food-table").hide();
     $("#drink-table").hide();
+    $("#drinkAmount-table").hide();
     $("#notes-table").hide();
     $("#dates").slideDown();
     $("#check-buttons").slideDown();
@@ -469,7 +513,8 @@ $(document).ready(function() {
       var exercises = $("#editExercises").html();
       var food = $("#editFood").html();
       var drink = $("#editDrink").html();
+      var drinkAmount = $("#editDrinkAmount").html();
       var general = $("#editGeneral").html();
-      journal.editJournalEntry(id, sleep, medications, exercises, food, drink, general);
+      journal.editJournalEntry(id, sleep, medications, exercises, food, drink, drinkAmount, general);
     });
 });
