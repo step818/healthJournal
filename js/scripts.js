@@ -306,9 +306,16 @@ $(document).ready(function() {
   attachDrinkListeners();
   attachGeneralListeners();
 
-
+  // Add sample data included above
   journal.addJournalEntry(monday1);
   journal.addJournalEntry(monday2);
+  journal.addJournalEntry(monday3);
+  journal.addJournalEntry(tuesday1);
+
+  $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li>");
+  $("#all-dates").append("<li id=" + monday2.id + ">" + monday2.timeDate + "</li>");
+  $("#all-dates").append("<li id=" + monday3.id + ">" + monday3.timeDate + "</li>");
+  $("#all-dates").append("<li id=" + tuesday1.id + ">" + tuesday1.timeDate + "</li>");
 
   $("form#formOne").submit(function(event) {
     event.preventDefault();
