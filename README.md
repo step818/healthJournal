@@ -8,8 +8,6 @@
 
 A journal where a user can track their sleep, medications, food, drink, and exercises.  They can see previous entries as well as see trends in food, sleep, etc.
 
-Go to https://tessasullivan.github.io/healthJournal
-
 ### Specs
 | Spec | Input | Output |
 | :-------------     | :------------- | :------------- |
